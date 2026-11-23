@@ -9,7 +9,7 @@ public class EncapDemo {
 		// TODO Auto-generated method stub
 
 		
-		Agent ram = new Agent();
+		Agent ram = new InsuranceAgent();
 		
 		//ram.name="Ramesh";
 		
@@ -26,7 +26,7 @@ public class EncapDemo {
 		System.out.println(ram.getName());
 		
 		
-		Agent shyam = new Agent((byte) 211, "Shyam", 4.5);
+		Agent shyam = new InsuranceAgent((byte) 111, "Shyam", 4.5,"BrachManager");
 		
 //		System.out.println(shyam.getName());
 //		System.out.println(shyam.getCommission());
@@ -41,6 +41,14 @@ public class EncapDemo {
 		var resp=dem.setScale(3,RoundingMode.UP);
 		
 		System.out.println("Rouded Value "+resp);
+		
+		BigDecimal balance =new BigDecimal("1500.00");
+        BigDecimal feeRate = new BigDecimal("0.025");
+        BigDecimal fee = balance.multiply(feeRate)
+                                .setScale(2, RoundingMode.HALF_UP); 
+        
+        System.out.println(fee);
+
 
 	}
 

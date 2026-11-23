@@ -1,7 +1,14 @@
 package com.example.demo;
 
-public class Agent {
+public abstract class Agent {
 
+	/*
+	 *  byte -127 to 127
+	 *  short -32768 to 32767
+	 *  int 2^31
+	 *  long ^63
+	 */
+	
 	private byte id;
 	private String name;
 	private double commission;
