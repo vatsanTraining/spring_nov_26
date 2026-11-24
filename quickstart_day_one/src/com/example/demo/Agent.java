@@ -3,11 +3,14 @@ package com.example.demo;
 public abstract class Agent {
 
 	/*
-	 *  byte -127 to 127
-	 *  short -32768 to 32767
-	 *  int 2^31
-	 *  long ^63
+	 *  byte S9(1) to S9(2)       -128 to 127    
+	 *  short S9(1) to S9(4)      -32768 to 32767 
+	 *  int   S9(5) to S9(9)     -2,147,483,648 to 2,147,483,647
+	 *  long   S9(10) to S9(18)  -9.22 × 10¹⁸ to 9.22 × 10¹⁸
+
 	 */
+	
+	
 	
 	private byte id;
 	private String name;
