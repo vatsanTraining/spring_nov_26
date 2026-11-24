@@ -3,8 +3,8 @@ package com.example.demo.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.demo.Policy;
 import com.example.demo.ifaces.MyService;
+import com.example.demo.model.Policy;
 
 public class InMemoryService implements MyService<Policy> {
 	

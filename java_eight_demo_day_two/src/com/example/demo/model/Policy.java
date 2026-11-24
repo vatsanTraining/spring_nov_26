@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.model;
 
 import com.example.demo.enums.PolicyType;
 

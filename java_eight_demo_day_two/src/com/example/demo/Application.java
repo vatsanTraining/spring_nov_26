@@ -6,6 +6,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 import com.example.demo.enums.PolicyType;
+import com.example.demo.model.Policy;
 
 class Trial implements Consumer<Policy>{
 

@@ -10,9 +10,9 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.demo.Policy;
 import com.example.demo.enums.PolicyType;
 import com.example.demo.ifaces.MyService;
+import com.example.demo.model.Policy;
 
 public class FileService implements MyService<Policy> {
 

@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.example.demo.enums.PolicyType;
 import com.example.demo.ifaces.MyService;
+import com.example.demo.model.Policy;
+import com.example.demo.model.PolicyHandler;
 import com.example.demo.services.*;
 
 public class SecondApplication {
