@@ -4,8 +4,7 @@ import java.util.List;
 
 import com.example.demo.enums.PolicyType;
 import com.example.demo.ifaces.MyService;
-import com.example.demo.services.FileService;
-import com.example.demo.services.InMemoryService;
+import com.example.demo.services.*;
 
 public class SecondApplication {
 
@@ -29,10 +28,10 @@ public class SecondApplication {
 		System.out.println("is Added =>"+handler.add(policyFour));
 		
 		
-		//List<Policy> policyList = handler.findAll();
+		List<Policy> policyList = handler.findAll();
 		
 		
-		//policyList.forEach(System.out::println);
+		policyList.forEach(System.out::println);
 
 	}
 
