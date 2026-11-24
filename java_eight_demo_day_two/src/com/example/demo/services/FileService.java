@@ -3,9 +3,9 @@ package com.example.demo.services;
 import java.util.List;
 
 import com.example.demo.Policy;
-import com.example.demo.ifaces.Repository;
+import com.example.demo.ifaces.MyService;
 
-public class FileService implements Repository<Policy> {
+public class FileService implements MyService<Policy> {
 
 	@Override
 	public boolean add(Policy t) {
