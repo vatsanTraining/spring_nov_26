@@ -39,8 +39,21 @@ public class Application {
 		policyList.add(policyTwo);
 		
 		
-		//policyList.forEach(e -> System.out.println(e));
 		
+		
+		
+//		class Trial implements Consumer<Policy>{
+//
+//			@Override
+//			public void accept(Policy t) {
+//
+//				System.out.println(t);
+//			}
+//			
+//			
+//		}
+		// The code above is done using  Lambda
+
 		policyList.forEach(System.out::println);
 		
 		Predicate<Double> calculate = e -> e >200000.00 ;
@@ -57,7 +70,7 @@ public class Application {
 		});
 		
 		
-		
+		policyList.forEach(e -> System.out.println(e));
 		
 	}
 
