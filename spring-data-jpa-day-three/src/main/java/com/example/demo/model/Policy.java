@@ -2,14 +2,31 @@ package com.example.demo.model;
 
 import com.example.demo.enums.PolicyType;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "policy_2026")
 public class Policy {
 
 	
 	
+	@Id
+	@Column(name = "policy_number")
 	private long policyNumber;
 	
+	@Column(name = "policy_holder")
 	private String policyHolder;
+	
+	@Column(name = "policy_type")
+	@Enumerated(EnumType.STRING)
 	private PolicyType policyType;
+	
+	@Column(name = "premium_amount")
 	private double premiumAmount;
 	
 	public Policy() {

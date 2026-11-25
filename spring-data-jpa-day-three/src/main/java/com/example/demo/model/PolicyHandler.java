@@ -18,12 +18,6 @@ public class PolicyHandler {
 	private PolicyService service;
 	
 
-//	public PolicyHandler(@Qualifier("fileService") MyService<Policy> service) {
-//		super();
-//		this.service=service;
-//	}
-//	
-	
 	
 	public PolicyHandler(PolicyService service) {
 		super();
