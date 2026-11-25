@@ -5,7 +5,9 @@ import com.example.demo.enums.PolicyType;
 public class Policy {
 
 	
+	
 	private long policyNumber;
+	
 	private String policyHolder;
 	private PolicyType policyType;
 	private double premiumAmount;
