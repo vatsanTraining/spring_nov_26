@@ -4,30 +4,41 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.PolicyDto;
 import com.example.demo.ifaces.PolicyRepoistory;
+import com.example.demo.mapper.PolicyMapper;
 import com.example.demo.model.Policy;
 
 @Service
 public class PolicyService {
 
-	
+
+	private PolicyMapper mapper;
 	private PolicyRepoistory repo;
 
-	public PolicyService(PolicyRepoistory repo) {
+	public PolicyService(PolicyRepoistory repo,PolicyMapper mapper) {
 		super();
 		this.repo = repo;
+		this.mapper = mapper;
+		System.out.println(repo.getClass().getName());
 	}
 	
 	
-	public Policy add(Policy t) {
+	public PolicyDto add(PolicyDto t) {
 		
 		
-		return this.repo.save(t);
+		Policy saved = this.repo.save(mapper.toEntity(t));
+		
+		return mapper.toDto(saved);
+		
 	}
 
-	public List<Policy> findAll(){
+	public List<PolicyDto> findAll(){
 		
-		return this.repo.findAll();
+		List<Policy> found = this.repo.findAll();
+		
+		
+		return found.stream().map(mapper::toDto).toList();
 	}
 
 }
