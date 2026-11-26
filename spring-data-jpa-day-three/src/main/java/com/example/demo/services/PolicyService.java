@@ -40,6 +40,27 @@ public class PolicyService {
 		
 		return found.stream().map(mapper::toDto).toList();
 	}
+	
+	
+	public List<PolicyDto> findByPolicyHolder(String name){
+		
+		
+      List<Policy> found = this.repo.findByPolicyHolder(name);
+		
+		
+		return found.stream().map(mapper::toDto).toList();
+	}
+	
+	
+	public List<PolicyDto> findByPremium(){
+		
+		
+	      List<Policy> found = this.repo.getMeByPremiumAmount();
+			
+			
+			return found.stream().map(mapper::toDto).toList();
+		}
+		
 
 }
 

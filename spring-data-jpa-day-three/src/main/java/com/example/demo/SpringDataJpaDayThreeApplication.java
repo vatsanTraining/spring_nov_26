@@ -1,17 +1,14 @@
 package com.example.demo;
 
-import java.beans.BeanProperty;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
-import com.example.demo.enums.PolicyType;
-import com.example.demo.model.Policy;
-import com.example.demo.services.PolicyService;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 
 @SpringBootApplication
+@OpenAPIDefinition(info = @Info(title = "Policy Mangement",version = "1.0"))
 public class SpringDataJpaDayThreeApplication {
 
 	public static void main(String[] args) {

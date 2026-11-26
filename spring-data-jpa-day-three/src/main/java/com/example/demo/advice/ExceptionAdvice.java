@@ -25,7 +25,6 @@ public class ExceptionAdvice {
 		
 		errors.put(error.getField(), error.getDefaultMessage()));
 		
-		
 		errors.put("URI", request.getDescription(false));
 		
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
