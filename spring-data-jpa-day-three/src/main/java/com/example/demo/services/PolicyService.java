@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import java.util.List;
 
+import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.PolicyDto;
@@ -60,6 +61,12 @@ public class PolicyService {
 			
 			return found.stream().map(mapper::toDto).toList();
 		}
+
+
+	public void  remove(long id) {
+	
+		this.repo.deleteById(id);;
+	}
 		
 
 }
