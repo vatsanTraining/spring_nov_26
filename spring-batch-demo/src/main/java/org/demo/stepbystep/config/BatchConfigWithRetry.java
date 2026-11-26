@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package org.demo.stepbystep.config;
 
 import java.net.BindException;
 import java.time.Duration;
@@ -13,7 +13,6 @@ import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.job.Job;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.job.parameters.RunIdIncrementer;
-import org.springframework.batch.core.launch.JobOperator;
 import org.springframework.batch.core.listener.SkipListener;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.Step;
@@ -26,7 +25,6 @@ import org.springframework.batch.infrastructure.item.file.FlatFileParseException
 import org.springframework.batch.infrastructure.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.infrastructure.item.support.CompositeItemProcessor;
 import org.springframework.batch.infrastructure.item.support.builder.CompositeItemProcessorBuilder;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -100,15 +98,16 @@ public class BatchConfigWithRetry {
 	        };
 
 	        return new CompositeItemProcessorBuilder<PolicyDto, Policy>()
-	                .delegates(deduplicateFilter, transientFailureSimulator, validateAndMap)
+	                .delegates( transientFailureSimulator, deduplicateFilter,validateAndMap)
 	                .build();
 	    }
-
+	    
+	
 	    @Bean
 	    JpaItemWriter<Policy> policyWriter(EntityManagerFactory entityManagerFactory) {
 	        return new JpaItemWriterBuilder<Policy>()
 	                .entityManagerFactory(entityManagerFactory)
-	                .usePersist(true)
+	                .usePersist(false)
 	                .build();
 	    }
 
@@ -122,6 +121,9 @@ public class BatchConfigWithRetry {
 	                .includes(TransientDataAccessException.class, QueryTimeoutException.class)
 	                .build();
 	    }
+	    
+	    
+	    
 
 	    @Bean
 	    RetryListener policyRetryListener() {
@@ -160,21 +162,17 @@ public class BatchConfigWithRetry {
 	    }
 
 	    @Bean
-	    Step importPolicyStep(JobRepository jobRepository,
-	                          PlatformTransactionManager transactionManager,
-	                          FlatFileItemReader<PolicyDto> reader,
-	                          CompositeItemProcessor<PolicyDto, Policy> processor,
-	                          JpaItemWriter<Policy> writer,
-	                          RetryPolicy policyRetryPolicy,
-	                          RetryListener policyRetryListener,
-	                          SkipListener<PolicyDto, Policy> skipListener) {
-
+	    Step importPolicyStep(JobRepository jobRepository, PlatformTransactionManager transactionManager,
+	            FlatFileItemReader<PolicyDto> reader, CompositeItemProcessor<PolicyDto, Policy> processor,
+	            JpaItemWriter<Policy> writer, RetryPolicy policyRetryPolicy, RetryListener policyRetryListener,
+	            SkipListener<PolicyDto, Policy> skipListener) {
 	        return new StepBuilder("importPolicyStep", jobRepository)
 	                .<PolicyDto, Policy>chunk(10)
 	                .transactionManager(transactionManager)
 	                .reader(reader)
 	                .processor(processor)
 	                .writer(writer)
+	                .faultTolerant()
 	                .retryPolicy(policyRetryPolicy)
 	                .retryListener(policyRetryListener)
 	                .skipLimit(10)
@@ -183,8 +181,9 @@ public class BatchConfigWithRetry {
 	                .skip(IllegalArgumentException.class)
 	                .skip(DataIntegrityViolationException.class)
 	                .skip(EntityExistsException.class)
-	                .skip(TransientDataAccessException.class) 
-	                                .listener(skipListener)
+	                .skip(TransientDataAccessException.class)
+	                .skip(QueryTimeoutException.class) // <-- Matches your RetryPolicy
+	                .listener(skipListener)
 	                .build();
 	    }
 
@@ -196,10 +195,7 @@ public class BatchConfigWithRetry {
 	                .build();
 	    }
 
-	    @Bean
-	    CommandLineRunner runBatchJob(JobOperator jobOperator, Job importPolicyJob) {
-	        return args -> {
-	            jobOperator.startNextInstance(importPolicyJob);
-	        };
-	    }
-	    }
+}
+
+
+

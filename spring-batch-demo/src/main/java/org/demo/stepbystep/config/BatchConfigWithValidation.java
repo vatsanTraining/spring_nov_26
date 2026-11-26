@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package org.demo.stepbystep.config;
 
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -118,12 +118,7 @@ public class BatchConfigWithValidation {
                 .build();
     }
 	
-	@Bean
-    CommandLineRunner runBatchJob(JobOperator jobOperator, Job importPolicyJob) {
-        return args -> {
-            jobOperator.startNextInstance(importPolicyJob);
-        };
-    }
-
-	
+		
 }
+
+

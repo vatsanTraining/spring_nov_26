@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package org.demo.stepbystep.config;
 
 import java.net.BindException;
 import java.util.Set;
