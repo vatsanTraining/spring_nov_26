@@ -52,7 +52,6 @@ import jakarta.validation.Validator;
 public class BatchConfigWithRetry {
 	
 	
-	private PolicyMapper mapper;
 	
 	 private static final Logger log = LoggerFactory.getLogger(BatchConfigWithRetry.class);
 

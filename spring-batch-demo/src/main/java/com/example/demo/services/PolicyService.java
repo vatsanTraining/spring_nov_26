@@ -2,11 +2,10 @@ package com.example.demo.services;
 
 import java.util.List;
 
-import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.PolicyDto;
-import com.example.demo.ifaces.PolicyRepoistory;
+import com.example.demo.ifaces.PolicyRepository;
 import com.example.demo.mapper.PolicyMapper;
 import com.example.demo.model.Policy;
 
@@ -15,9 +14,9 @@ public class PolicyService {
 
 
 	private PolicyMapper mapper;
-	private PolicyRepoistory repo;
+	private PolicyRepository repo;
 
-	public PolicyService(PolicyRepoistory repo,PolicyMapper mapper) {
+	public PolicyService(PolicyRepository repo,PolicyMapper mapper) {
 		super();
 		this.repo = repo;
 		this.mapper = mapper;

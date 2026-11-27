@@ -7,7 +7,6 @@ import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.job.Job;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.job.parameters.RunIdIncrementer;
-import org.springframework.batch.core.launch.JobOperator;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.Step;
 import org.springframework.batch.core.step.builder.StepBuilder;
@@ -18,7 +17,6 @@ import org.springframework.batch.infrastructure.item.file.FlatFileItemReader;
 import org.springframework.batch.infrastructure.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.infrastructure.item.support.CompositeItemProcessor;
 import org.springframework.batch.infrastructure.item.support.builder.CompositeItemProcessorBuilder;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -38,15 +36,7 @@ import jakarta.validation.Validator;
 public class BatchConfigWithValidation {
 	
 	
-	private PolicyMapper mapper;
 	
-	
-
-	public BatchConfigWithValidation(PolicyMapper mapper) {
-		super();
-		this.mapper = mapper;
-	}
-
 
 	@Bean
     FlatFileItemReader<PolicyDto> policyReader() {

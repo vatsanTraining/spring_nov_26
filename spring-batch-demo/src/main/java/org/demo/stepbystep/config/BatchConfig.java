@@ -23,20 +23,12 @@ import com.example.demo.model.Policy;
 
 import jakarta.persistence.EntityManagerFactory;
 
-//@Configuration
-//@Profile("basic")
+@Configuration
+@Profile("basic")
 public class BatchConfig {
 	
 	
-	private PolicyMapper mapper;
 	
-	
-
-	public BatchConfig(PolicyMapper mapper) {
-		super();
-		this.mapper = mapper;
-	}
-
 
 	@Bean
     FlatFileItemReader<PolicyDto> policyReader() {

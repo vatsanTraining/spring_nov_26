@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.example.demo.*;
 import com.example.demo.model.EndowmentPolicy;
 import com.example.demo.model.Policy;
 import com.example.demo.model.TermLifePolicy;

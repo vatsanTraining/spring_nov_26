@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.example.demo.model.Policy;
 
-public interface PolicyRepoistory extends JpaRepository<Policy, Long> {
+public interface PolicyRepository extends JpaRepository<Policy, Long> {
 
 	
 	  List<Policy> findByPolicyHolder(String policyHolder);

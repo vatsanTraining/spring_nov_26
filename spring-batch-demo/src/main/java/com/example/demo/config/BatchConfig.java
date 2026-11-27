@@ -25,6 +25,7 @@ import org.springframework.batch.infrastructure.item.file.FlatFileParseException
 import org.springframework.batch.infrastructure.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.infrastructure.item.support.CompositeItemProcessor;
 import org.springframework.batch.infrastructure.item.support.builder.CompositeItemProcessorBuilder;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
@@ -52,15 +53,18 @@ public class BatchConfig {
     private static final Logger log = LoggerFactory.getLogger(BatchConfig.class);
 
     @Bean
-    FlatFileItemReader<PolicyDto> policyReader() {
+    @StepScope
+    FlatFileItemReader<PolicyDto> policyReader(
+            @Value("#{jobParameters['inputFile'] ?: 'policy.csv'}") String inputFile) {
         return new FlatFileItemReaderBuilder<PolicyDto>()
                 .name("policyItemReader")
-                .resource(new ClassPathResource("policy.csv"))
+                .resource(new ClassPathResource(inputFile))
                 .delimited()
                 .names("policyNumber", "policyHolder", "premiumAmount", "policyType")
                 .targetType(PolicyDto.class)
                 .build();
     }
+
 
     @Bean
     @StepScope
@@ -100,7 +104,7 @@ public class BatchConfig {
     JpaItemWriter<Policy> policyWriter(EntityManagerFactory entityManagerFactory) {
         return new JpaItemWriterBuilder<Policy>()
                 .entityManagerFactory(entityManagerFactory)
-                .usePersist(false) // merge() safely updates existing rows on re-runs
+                .usePersist(false) 
                 .build();
     }
 
@@ -109,7 +113,7 @@ public class BatchConfig {
         return RetryPolicy.builder()
                 .maxRetries(3)
                 .delay(Duration.ofMillis(500))
-                .multiplier(2.0) // 500ms -> 1000ms -> 2000ms
+                .multiplier(2.0) //  2000ms
                 .maxDelay(Duration.ofSeconds(5))
                 .includes(TransientDataAccessException.class, QueryTimeoutException.class)
                 .build();
@@ -171,7 +175,7 @@ public class BatchConfig {
                 .reader(reader)
                 .processor(processor)
                 .writer(writer)
-                .faultTolerant()
+                .faultTolerant()  // ** note this
                 .retryPolicy(policyRetryPolicy)
                 .retryListener(policyRetryListener)
                 .skipLimit(10)
@@ -194,4 +198,5 @@ public class BatchConfig {
                 .build();
     }
 }
+
 

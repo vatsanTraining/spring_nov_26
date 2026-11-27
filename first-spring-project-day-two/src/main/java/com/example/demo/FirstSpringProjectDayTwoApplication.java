@@ -1,22 +1,16 @@
 package com.example.demo;
 
-import java.util.List;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.web.server.servlet.context.AnnotationConfigServletWebServerApplicationContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 
 import com.example.demo.enums.PolicyType;
-import com.example.demo.ifaces.MyService;
 import com.example.demo.model.Policy;
 import com.example.demo.model.PolicyHandler;
-import com.example.demo.services.FileService;
 
 @SpringBootApplication
-//@ComponentScan(basePackages = {"com.example.demo","org.demo.module"})
 public class FirstSpringProjectDayTwoApplication {
 
 	public static void main(String[] args) {

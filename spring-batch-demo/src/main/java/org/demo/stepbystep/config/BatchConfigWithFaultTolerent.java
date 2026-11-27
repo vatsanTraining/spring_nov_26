@@ -45,15 +45,11 @@ import jakarta.validation.Validator;
 public class BatchConfigWithFaultTolerent {
 	
 	
-	private PolicyMapper mapper;
-	
+		
     private static final Logger log = LoggerFactory.getLogger(BatchConfigWithFaultTolerent.class);
 
 
-	public BatchConfigWithFaultTolerent(PolicyMapper mapper) {
-		super();
-		this.mapper = mapper;
-	}
+	
 
 
 	@Bean

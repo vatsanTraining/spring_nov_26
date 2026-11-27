@@ -29,7 +29,7 @@ public class Application {
 		Policy policyThree = new Policy(30230230, "Shiv", PolicyType.Endowment, 300000.00);
 		Policy policyFour = new Policy(40230230, "Zahir", PolicyType.Medical, 400000.00);
 
-		Policy[] polArry = {policyOne,policyTwo,policyThree,policyFour};
+		//Policy[] polArry = {policyOne,policyTwo,policyThree,policyFour};
 		
 
 		List<Policy> policyList = new ArrayList<>();

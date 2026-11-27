@@ -2,7 +2,6 @@ package com.example.demo.services;
 
 import java.util.List;
 
-import org.jspecify.annotations.Nullable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.PolicyDto;
@@ -65,7 +64,12 @@ public class PolicyService {
 
 	public void  remove(long id) {
 	
-		this.repo.deleteById(id);;
+		if(!this.repo.existsById(id)) {
+			
+			throw new RuntimeException("Element with id "+id+ "Not Present");
+		}else {
+		this.repo.deleteById(id);
+		}
 	}
 		
 
