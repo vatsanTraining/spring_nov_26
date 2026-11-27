@@ -1,0 +1,8 @@
+1. Job and JobRepository – How Spring Batch manages job executions.
+2. JobOperator – How jobs are launched programmatically.
+3. Tasklet processing – How a single task is executed.
+4. Chunk processing – Reader → Processor → Writer.
+5. JobParameters – How Spring Batch identifies individual job executions.
+6. JobExecution and StepExecution – How execution status and metadata are maintained.
+One particularly important distinction to understand is why 
+we use different JobParameters for different executions.
